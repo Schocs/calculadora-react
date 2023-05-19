@@ -1,11 +1,11 @@
-import { useState } from 'react'
+import React from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import BotaoNumerico from './components/BotaoNumerico/BotaoNumerico'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
   return (
     <>
@@ -19,10 +19,9 @@ function App() {
       </div>
       <h1>Vite + React</h1>
       <div className="card">
-        <BotaoNumerico numero={1} />
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+        {numeros.map(num => (
+          <BotaoNumerico numero={num} valor={num} />
+        ))}
       </div>
       <p className="read-the-docs">
         learn nothing

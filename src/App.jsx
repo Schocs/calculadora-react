@@ -7,6 +7,8 @@ import BotaoNumerico from './components/BotaoNumerico/BotaoNumerico'
 function App() {
   const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
+
+
   return (
     <>
       <div>
@@ -20,7 +22,7 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
         {numeros.map(num => (
-          <BotaoNumerico numero={num} valor={num} />
+          <BotaoNumerico numero={num} valor={num} cor={'rgb(243, 243, 4)'}/>
         ))}
       </div>
       <p className="read-the-docs">

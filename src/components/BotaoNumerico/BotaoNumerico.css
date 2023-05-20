@@ -2,6 +2,7 @@
     width: 5vw;
     height: 7.5vh;
     background: rgb(245, 245, 220);
+    border-radius: 10px;
 }
 
 .botao:hover {
@@ -16,8 +17,8 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgb(243, 243, 4);
     cursor: pointer;
+    border-radius: 10px;
 }
 
 .interno:active {

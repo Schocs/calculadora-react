@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -6,6 +6,12 @@ import BotaoNumerico from './components/BotaoNumerico/BotaoNumerico'
 
 function App() {
   const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  const [display, setDisplay] = useState('0');
+
+  const calc = (valor) => {
+    console.log('foi')
+    setDisplay(display + valor)
+  }
 
   return (
     <>
@@ -20,11 +26,11 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
         {numeros.map(num => (
-          <BotaoNumerico numero={num} valor={num} cor={'rgb(243, 243, 4)'}/>
+          <BotaoNumerico numero={num} valor={num} cor={'rgb(243, 243, 4)'} onClick={() => console.log(num)}/>
         ))}
       </div>
       <p className="read-the-docs">
-        learn nothing
+        {display}
       </p>
     </>
   )

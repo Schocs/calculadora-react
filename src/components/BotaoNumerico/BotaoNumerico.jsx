@@ -4,14 +4,16 @@ import './BotaoNumerico.css';
 
 const BotaoNumerico = ({numero, valor, cor}) => {
 
+    const passaValor = (e) => {
+        console.log(e.target.value);
+        return e.target.value;
+    }
 
     return (
-        <div className="botao" onClick={() => valor}>
-            <div className="interno" style={{background: cor}}>
-                <h1 className="numero">
+        <div className="botao">
+            <button className="interno" style={{background: cor}} value={valor} onClick={(e) => passaValor(e, 'value')}>
                     {numero}
-                </h1>
-            </div>
+            </button>
         </div>
     )
 }

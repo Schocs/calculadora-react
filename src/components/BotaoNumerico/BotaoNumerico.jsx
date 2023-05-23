@@ -6,7 +6,7 @@ const BotaoNumerico = ({numero, cor, valor, onClick}) => {
 
     return (
         <div className="botao">
-            <button className="interno" style={{background: cor}} value={valor} onClick={onClick} >
+            <button className="interno" style={{background: cor}} value={valor} onClick={onClick}>
                     {numero}
             </button>
         </div>

@@ -52,7 +52,7 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
         {numeros.map(num => (
-          <BotaoNumerico numero={num} valor={num} cor={'rgb(243, 243, 4)'} onClick={e => calc(e, 'value')}/>
+          <BotaoNumerico numero={num} valor={num} key={num} cor={'rgb(243, 243, 4)'} onClick={e => calc(e, 'value')}/>
         ))}
       </div>
       <button onClick={del}>apaga</button>

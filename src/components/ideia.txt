@@ -1,0 +1,12 @@
+
+There are a few ways to extend the application to support the ability to enter decimals and negative numbers.
+
+One way is to add a new button to the application that allows the user to enter a decimal point. When the user clicks on this button, the cursor will be placed after the last digit in the display. The user can then type in a decimal point and any additional digits.
+
+Another way to extend the application to support decimals is to change the way that the addNumToDisplay function works. Currently, this function only adds whole numbers to the display. To add decimals, we can change the function to accept a second argument, which will be the number of decimal places. For example, if the user clicks on the "1" button and then the "." button, the addNumToDisplay function will add the number "1.0" to the display.
+
+To support negative numbers, we can add a new button to the application that allows the user to enter a negative sign. When the user clicks on this button, the cursor will be placed before the first digit in the display. The user can then type in a negative sign and any additional digits.
+
+We can also change the way that the addNumToDisplay function works to support negative numbers. Currently, this function only adds positive numbers to the display. To add negative numbers, we can change the function to check if the second argument is negative. If it is, the function will add a negative sign to the front of the number before adding it to the display.
+
+By making these changes, we can extend the application to support the ability to enter decimals and negative numbers.

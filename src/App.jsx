@@ -1,4 +1,4 @@
-import React, { memo, useState } from 'react'
+import React, { memo, useEffect, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
@@ -9,12 +9,27 @@ function App() {
   const operadores = ['+', '-', '*', '/'];
 
   const [display, setDisplay] = useState('0');
+  const [history, setHistory] = useState([]);
 
   const Painel = memo( function Painel({ display })
   {
     return <p> {display} </p>
   }
   );
+
+  const loadFromMemoryStorage = () => {
+    let memory = localStorage.getItem('memoryStorage');
+    let history = localStorage.getItem('history');
+    if(memory === 0) {
+      return
+    }
+    setDisplay(memory);
+    setHistory(history);
+  }
+
+  useEffect(() => {
+    loadFromMemoryStorage()
+  }, [])
 
   const addNumToDisplay = (e) => {
     const number = e.target.value;
@@ -29,10 +44,14 @@ function App() {
         setDisplay(display + number);
       }
     }
+    setHistory([...history, display]);
+    localStorage.setItem('history', history);
   }
-
+  
   const addOpToDisplay = (e) => {
     setDisplay( display + ' ' + e.target.value + ' ' );
+    setHistory([...history, display]);
+    localStorage.setItem('history', history);
   }
 
   const delFromDisplay = () => {
@@ -47,6 +66,8 @@ function App() {
 
   const resetDisplay = () => {
     setDisplay('0');
+    setHistory([]);
+    localStorage.setItem('memoryStorage', 0);
   }
 
   const calculate = () => {
@@ -56,16 +77,22 @@ function App() {
     console.log(operator, 'operadores', numbers);
     const result = eval(`${numbers.join(' ')} ${operator}`);
     setDisplay(result);
+    setHistory([...history, result]);
+    localStorage.setItem('history', history);
+    localStorage.setItem('memoryStorage', result);
   }
 
-  const sqrt = () =>{    
-    const num = display.split();
+  const sqrt = () => {
+    const num = parseFloat(display);
+    if (isNaN(num)) {
+      return;
+    }
     setDisplay(Math.sqrt(num));
-  } 
+  }
 
-  const percentage = (a, b) => a / 100 * b;
+/*   const percentage = (a, b) => a / 100 * b;
 
-  const power = (a, b) => Math.pow(a, b);
+  const power = (a, b) => Math.pow(a, b); */
 
   return (
     <>
@@ -80,12 +107,12 @@ function App() {
       <h1>Vite + React</h1>
       <div className="card">
         {numeros.map(num => (
-          <BotaoCalculadora simbolo={num} valor={num} key={num} cor={'rgb(243, 243, 4)'} onClick={e => addNumToDisplay(e, 'value')}/>
+          <BotaoCalculadora simbolo={num} valor={num} key={num} cor={'rgb(243, 243, 4)'} onClick={e => addNumToDisplay(e)}/>
         ))}
       </div>
       <div className='card'>
         {operadores.map(op => (
-          <BotaoCalculadora simbolo={op} valor={op} key={op} cor={'white'} onClick={e => addOpToDisplay(e, 'value')} />
+          <BotaoCalculadora simbolo={op} valor={op} key={op} cor={'white'} onClick={e => addOpToDisplay(e)} />
         ))
         }
       </div>
@@ -94,6 +121,7 @@ function App() {
       <button onClick={calculate}>calcula</button>
       <button onClick={sqrt}>√</button>
       <Painel display={display}/>
+      <Painel display={history}/>
     </>
   )
 }

@@ -1,12 +1,12 @@
-import React, { memo, useState, useEffect } from 'react'
+import React, { memo, useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
 import BotaoCalculadora from './components/BotaoCalculadora/BotaoCalculadora'
 
 function App() {
-  const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9];
-  const operadores = ['+', '-', '*', '/', '%', 'bª', '√'];
+  const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '.', '-'];
+  const operadores = ['+', '-', '*', '/'];
 
   const [display, setDisplay] = useState('0');
 
@@ -17,10 +17,17 @@ function App() {
   );
 
   const addNumToDisplay = (e) => {
+    const number = e.target.value;
     if(display === '0') {
-      setDisplay(e.target.value);
+      setDisplay(number);
     } else {
-      setDisplay(display + e.target.value);
+      if (number === '.') {
+        setDisplay(display + '.');
+      } else if (number === '-') {
+        setDisplay(display + '-');
+      } else {
+        setDisplay(display + number);
+      }
     }
   }
 
@@ -41,6 +48,24 @@ function App() {
   const resetDisplay = () => {
     setDisplay('0');
   }
+
+  const calculate = () => {
+    const numbers = display.split(' ');
+    console.log(numbers, 'numeros');
+    const operator = numbers.pop();
+    console.log(operator, 'operadores', numbers);
+    const result = eval(`${numbers.join(' ')} ${operator}`);
+    setDisplay(result);
+  }
+
+  const sqrt = () =>{    
+    const num = display.split();
+    setDisplay(Math.sqrt(num));
+  } 
+
+  const percentage = (a, b) => a / 100 * b;
+
+  const power = (a, b) => Math.pow(a, b);
 
   return (
     <>
@@ -66,6 +91,8 @@ function App() {
       </div>
       <button onClick={delFromDisplay}>apaga</button>
       <button onClick={resetDisplay}>reseta</button>
+      <button onClick={calculate}>calcula</button>
+      <button onClick={sqrt}>√</button>
       <Painel display={display}/>
     </>
   )

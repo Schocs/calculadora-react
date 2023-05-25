@@ -90,6 +90,19 @@ function App() {
     setDisplay(Math.sqrt(num));
   }
 
+  const percentage = () => {
+    const num = parseFloat(display);
+    if(isNaN(num)) {
+      return;
+    }
+    setDisplay(num/100);
+  }
+
+  const toThePowerOf = () => {
+    const num = display.split(' ');
+    const power = num.pop();
+    console.log(num, power);
+  }
 /*   const percentage = (a, b) => a / 100 * b;
 
   const power = (a, b) => Math.pow(a, b); */
@@ -120,6 +133,8 @@ function App() {
       <button onClick={resetDisplay}>reseta</button>
       <button onClick={calculate}>calcula</button>
       <button onClick={sqrt}>√</button>
+      <button onClick={percentage}>%</button>
+      <button onClick={toThePowerOf}>^</button>
       <Painel display={display}/>
       <Painel display={history}/>
     </>

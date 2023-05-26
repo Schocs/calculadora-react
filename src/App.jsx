@@ -11,13 +11,13 @@ function App() {
 
   const Painel = memo( function Painel({ display })
   {
-    return <p> {display} </p>
+    return <div> {display} </div>
   }
   );
 
   const loadFromMemoryStorage = () => {
     let memory = localStorage.getItem('memoryStorage');
-    let history = localStorage.getItem('history');
+    let history = localStorage.getItem('history').toString();
     if(memory === 0) {
       return
     }
@@ -46,8 +46,6 @@ function App() {
   
   const addOpToDisplay = (e) => {
     setDisplay( display + ' ' + e.target.value + ' ' );
-    setHistory([...history, display]);
-    localStorage.setItem('history', history);
   }
 
   const delFromDisplay = () => {
@@ -63,6 +61,7 @@ function App() {
   const resetDisplay = () => {
     setDisplay('0');
     setHistory([]);
+    localStorage.setItem('history', 0)
     localStorage.setItem('memoryStorage', 0);
   }
 
@@ -79,7 +78,7 @@ function App() {
   
   const handleResult = (result) => {
     setDisplay(result);
-    setHistory([...history, <HistoryItem expression={display} result={result} />]);
+    setHistory([...history, [display, '=', result, '\n']]);
     localStorage.setItem('history', history);
     localStorage.setItem('memoryStorage', result);
   }

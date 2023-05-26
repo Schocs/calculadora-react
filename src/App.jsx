@@ -1,12 +1,10 @@
 import React, { memo, useEffect, useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
 import './App.css'
 import BotaoCalculadora from './components/BotaoCalculadora/BotaoCalculadora'
 
 function App() {
   const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '.', '-'];
-  const operadores = ['+', '-', '*', '/'];
+  const operadores = ['+', '-', '*', '/', '^'];
 
   const [display, setDisplay] = useState('0');
   const [history, setHistory] = useState([]);
@@ -44,8 +42,6 @@ function App() {
         setDisplay(display + number);
       }
     }
-    setHistory([...history, display]);
-    localStorage.setItem('history', history);
   }
   
   const addOpToDisplay = (e) => {
@@ -72,12 +68,18 @@ function App() {
 
   const calculate = () => {
     const numbers = display.split(' ');
-    console.log(numbers, 'numeros');
     const operator = numbers.pop();
-    console.log(operator, 'operadores', numbers);
+    if(numbers[1] === '^') {
+      toThePowerOf(numbers[0], operator);
+      return;
+    }
     const result = eval(`${numbers.join(' ')} ${operator}`);
+    handleResult(result);
+  }
+  
+  const handleResult = (result) => {
     setDisplay(result);
-    setHistory([...history, result]);
+    setHistory([...history, <HistoryItem expression={display} result={result} />]);
     localStorage.setItem('history', history);
     localStorage.setItem('memoryStorage', result);
   }
@@ -87,7 +89,7 @@ function App() {
     if (isNaN(num)) {
       return;
     }
-    setDisplay(Math.sqrt(num));
+    handleResult(Math.sqrt(num));
   }
 
   const percentage = () => {
@@ -95,29 +97,24 @@ function App() {
     if(isNaN(num)) {
       return;
     }
-    setDisplay(num/100);
+    handleResult(num/100);
   }
 
-  const toThePowerOf = () => {
-    const num = display.split(' ');
-    const power = num.pop();
-    console.log(num, power);
+  const toThePowerOf = (x, y) => {
+    let res = Math.pow(x, y);
+    handleResult(res);
   }
-/*   const percentage = (a, b) => a / 100 * b;
 
-  const power = (a, b) => Math.pow(a, b); */
-
+  const HistoryItem = ({ expression, result }) => {
+    return (
+      <div>
+        <p>{expression} = {result}</p>
+      </div>
+    );
+  };
+  
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
       <div className="card">
         {numeros.map(num => (
           <BotaoCalculadora simbolo={num} valor={num} key={num} cor={'rgb(243, 243, 4)'} onClick={e => addNumToDisplay(e)}/>
@@ -134,7 +131,6 @@ function App() {
       <button onClick={calculate}>calcula</button>
       <button onClick={sqrt}>√</button>
       <button onClick={percentage}>%</button>
-      <button onClick={toThePowerOf}>^</button>
       <Painel display={display}/>
       <Painel display={history}/>
     </>

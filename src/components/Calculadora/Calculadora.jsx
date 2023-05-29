@@ -25,50 +25,50 @@ const Calculadora = () => {
     }, [])
 
     const addNumToDisplay = (e) => {
-    const number = e.target.value;
-    if(display === '0') {
-        setDisplay(number);
-    } else {
-        if (number === '.') {
-        setDisplay(display + '.');
-        } else if (number === '-') {
-        setDisplay(display + '-');
+        let number = e.target.value;
+        if(display === '0') {
+            setDisplay(number);
         } else {
-        setDisplay(display + number);
+            if (number === '.') {
+            setDisplay(display + '.');
+            } else if (number === '-') {
+            setDisplay(display + '-');
+            } else {
+            setDisplay(display + number);
+            }
         }
-    }
     }
     
     const addOpToDisplay = (e) => {
-    setDisplay( display + ' ' + e.target.value + ' ' );
+        
     }
 
     const delFromDisplay = () => {
-    if (display === '0' || display.length <= 1) {
-        resetDisplay()
-    } else if (display.endsWith(' ')) {
-        setDisplay(display.slice(0, (display.length - 3)))
-    } else {
-        setDisplay(display.slice(0, (display.length - 1)))
-    }
+        if (display === '0' || display.length <= 1) {
+            resetDisplay()
+        } else if (display.endsWith(' ')) {
+            setDisplay(display.slice(0, (display.length - 3)))
+        } else {
+            setDisplay(display.slice(0, (display.length - 1)))
+        }
     }
 
     const resetDisplay = () => {
-    setDisplay('0');
-    setHistory([]);
-    localStorage.setItem('history', 0)
-    localStorage.setItem('memoryStorage', 0);
+        setDisplay('0');
+        setHistory([]);
+        localStorage.setItem('history', 0)
+        localStorage.setItem('memoryStorage', 0);
     }
 
     const calculate = () => {
-    const numbers = display.split(' ');
-    const operator = numbers.pop();
-    if(numbers[1] === '^') {
-        toThePowerOf(numbers[0], operator);
-        return;
-    }
-    const result = eval(`${numbers.join(' ')} ${operator}`);
-    handleResult(result);
+        let numbers = display.split(' ');
+        let operator = numbers.pop();
+        if(numbers[1] === '^') {
+            toThePowerOf(numbers[0], operator);
+            return;
+        }
+        let result = eval(`${numbers.join(' ')} ${operator}`);
+        handleResult(result);
     }
     
     const handleResult = (result) => {
@@ -79,24 +79,24 @@ const Calculadora = () => {
     }
 
     const sqrt = () => {
-    const num = parseFloat(display);
-    if (isNaN(num)) {
-        return;
-    }
-    handleResult(Math.sqrt(num));
+        let num = parseFloat(display);
+        if (isNaN(num)) {
+            return;
+        }
+        handleResult(Math.sqrt(num));
     }
 
     const percentage = () => {
-    const num = parseFloat(display);
-    if(isNaN(num)) {
-        return;
-    }
-    handleResult(num/100);
+        let num = parseFloat(display);
+        if(isNaN(num)) {
+            return;
+        }
+        handleResult(num/100);
     }
 
     const toThePowerOf = (x, y) => {
-    let res = Math.pow(x, y);
-    handleResult(res);
+        let res = Math.pow(x, y);
+        handleResult(res);
     }
 
     return (

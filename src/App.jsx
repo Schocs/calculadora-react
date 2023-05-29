@@ -1,6 +1,7 @@
 import React, { memo, useEffect, useState } from 'react'
 import './App.css'
 import BotaoCalculadora from './components/BotaoCalculadora/BotaoCalculadora'
+import Calculadora from './components/Calculadora/Calculadora';
 
 function App() {
   const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '.', '-'];
@@ -114,7 +115,8 @@ function App() {
   
   return (
     <>
-      <div className="card">
+    <Calculadora />
+{/*       <div className="card">
         {numeros.map(num => (
           <BotaoCalculadora simbolo={num} valor={num} key={num} cor={'rgb(243, 243, 4)'} onClick={e => addNumToDisplay(e)}/>
         ))}
@@ -131,7 +133,7 @@ function App() {
       <button onClick={sqrt}>√</button>
       <button onClick={percentage}>%</button>
       <Painel display={display}/>
-      <Painel display={history}/>
+      <Painel display={history}/> */}
     </>
   )
 }

@@ -60,6 +60,10 @@ const Calculadora = () => {
         localStorage.setItem('memoryStorage', 0);
     }
 
+    const clearDisplay = () => {
+        /* fazer com que essa função apenas limpe o display, sem tocar no histórico etc */
+    }
+
     const calculate = () => {
         let numbers = display.split(' ');
         let operator = numbers.pop();

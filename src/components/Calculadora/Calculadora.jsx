@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './Calculadora.css';
 import BotaoCalculadora from '../BotaoCalculadora/BotaoCalculadora';
+import PopUp from '../PopUp/PopUp';
 
 const Calculadora = () => {
 
@@ -17,7 +18,7 @@ const Calculadora = () => {
           return
         }
         setDisplay(memory);
-        setHistory(history);
+        setHistory(history.split(','));
       }
 
     useEffect(() => {
@@ -45,7 +46,7 @@ const Calculadora = () => {
 
     const delFromDisplay = () => {
         if (display === '0' || display.length <= 1) {
-            resetDisplay()
+            clearDisplay()
         } else if (display.endsWith(' ')) {
             setDisplay(display.slice(0, (display.length - 3)))
         } else {
@@ -61,25 +62,7 @@ const Calculadora = () => {
     }
 
     const clearDisplay = () => {
-        /* fazer com que essa função apenas limpe o display, sem tocar no histórico etc */
-    }
-
-    const calculate = () => {
-        let numbers = display.split(' ');
-        let operator = numbers.pop();
-        if(numbers[1] === '^') {
-            toThePowerOf(numbers[0], operator);
-            return;
-        }
-        let result = eval(`${numbers.join(' ')} ${operator}`);
-        handleResult(result);
-    }
-    
-    const handleResult = (result) => {
-    setDisplay(result);
-    setHistory([...history, [display, '=', result, '\n']]);
-    localStorage.setItem('history', history);
-    localStorage.setItem('memoryStorage', result);
+        setDisplay('0');
     }
 
     const sqrt = () => {
@@ -103,13 +86,36 @@ const Calculadora = () => {
         handleResult(res);
     }
 
+    const calculate = () => {
+        let numbers = display.split(' ');
+        let operator = numbers.pop();
+        if(numbers[1] === '^') {
+            toThePowerOf(numbers[0], operator);
+            return;
+        }
+        let result = eval(`${numbers.join(' ')} ${operator}`);
+        handleResult(result);
+    }
+    
+    const handleResult = (result) => {
+    setDisplay(result);
+    setHistory(...history, [display, '=', result]);
+    localStorage.setItem('history', history);
+    localStorage.setItem('memoryStorage', result);
+    }
+
+    const [showHistory, setShowHistory] = useState(false);
+    const isHistoryShown = () => {
+        setShowHistory(!showHistory);
+    }
+
     return (
+        <>
         <div className='calcBody'>
             <div className='painel'>
-                <div className='display'>
+                <div className={'display'}>
                     {display}
                 </div>
-                <div className='historico'></div>
             </div>
             <div className='teclado'>
                 <div className='operadores'>
@@ -131,10 +137,13 @@ const Calculadora = () => {
             </div>
             <div className='especiais'>
                 <BotaoCalculadora cor={'blue'} simbolo={'='} valor={'='} onClick={calculate}/>
+                <BotaoCalculadora cor={'blue'} simbolo={'History'} valor={'history'} onClick={isHistoryShown}/>
                 <BotaoCalculadora cor={'blue'} simbolo={'Reset'} valor={'reset'} onClick={resetDisplay}/>
-                <BotaoCalculadora cor={'blue'} simbolo={'Clear'} valor={'clear'} onClick={resetDisplay}/>
+                <BotaoCalculadora cor={'blue'} simbolo={'Clear'} valor={'clear'} onClick={clearDisplay}/>
             </div>
+            <PopUp trigger={showHistory} setTrigger={setShowHistory} history={history}/>
         </div>
+        </>
     )
 }
 

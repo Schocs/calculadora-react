@@ -40,7 +40,7 @@ const Calculadora = () => {
     }
     
     const addOpToDisplay = (e) => {
-        
+        setDisplay( display + ' ' + e.target.value + ' ' );
     }
 
     const delFromDisplay = () => {

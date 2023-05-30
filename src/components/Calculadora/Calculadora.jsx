@@ -13,16 +13,16 @@ const Calculadora = () => {
 
     const loadFromMemoryStorage = () => {
         let memory = localStorage.getItem('memoryStorage');
-        let history = localStorage.getItem('history').toString();
+        let store = localStorage.getItem('history');
         if(memory === 0) {
           return
         }
         setDisplay(memory);
-        setHistory(history.split(','));
+        setHistory(store.split(','));
       }
 
     useEffect(() => {
-    loadFromMemoryStorage()
+        loadFromMemoryStorage()
     }, [])
 
     const addNumToDisplay = (e) => {
@@ -56,9 +56,9 @@ const Calculadora = () => {
 
     const resetDisplay = () => {
         setDisplay('0');
-        setHistory([]);
-        localStorage.setItem('history', 0)
-        localStorage.setItem('memoryStorage', 0);
+        setHistory('0');
+        localStorage.setItem('history', history)
+        localStorage.setItem('memoryStorage', display);
     }
 
     const clearDisplay = () => {
@@ -98,10 +98,11 @@ const Calculadora = () => {
     }
     
     const handleResult = (result) => {
-    setDisplay(result);
-    setHistory(...history, [display, '=', result]);
-    localStorage.setItem('history', history);
-    localStorage.setItem('memoryStorage', result);
+        let store = [display, ' = ', result];
+        setDisplay(result);
+        setHistory(store);
+        localStorage.setItem('memoryStorage', result);
+        localStorage.setItem('history', store);
     }
 
     const [showHistory, setShowHistory] = useState(false);
@@ -110,7 +111,7 @@ const Calculadora = () => {
     }
 
     return (
-        <>
+        <div className='raiz'>
         <div className='calcBody'>
             <div className='painel'>
                 <div className={'display'}>
@@ -143,7 +144,7 @@ const Calculadora = () => {
             </div>
             <PopUp trigger={showHistory} setTrigger={setShowHistory} history={history}/>
         </div>
-        </>
+        </div>
     )
 }
 

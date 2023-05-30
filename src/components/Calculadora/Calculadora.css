@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&family=VT323&display=swap');
 
+.raiz {
+    width: 100vw;
+    height: 100vh;
+    background: wheat;
+}
 
 .calcBody {
     width: 50vw;

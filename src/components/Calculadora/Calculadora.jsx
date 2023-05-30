@@ -130,9 +130,9 @@ const Calculadora = () => {
                 </div>
             </div>
             <div className='especiais'>
-                <BotaoCalculadora cor={'white'} simbolo={'='} valor={'='} onClick={calculate}/>
-                <BotaoCalculadora cor={'white'} simbolo={'Reset'} valor={'reset'} onClick={resetDisplay}/>
-                <BotaoCalculadora cor={'white'} simbolo={'Clear'} valor={'clear'} onClick={resetDisplay}/>
+                <BotaoCalculadora cor={'blue'} simbolo={'='} valor={'='} onClick={calculate}/>
+                <BotaoCalculadora cor={'blue'} simbolo={'Reset'} valor={'reset'} onClick={resetDisplay}/>
+                <BotaoCalculadora cor={'blue'} simbolo={'Clear'} valor={'clear'} onClick={resetDisplay}/>
             </div>
         </div>
     )

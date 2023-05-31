@@ -194,7 +194,7 @@ const Calculadora = () => {
                     <BotaoCalculadora cor={exCor} backCor={backBtnCor} simbolo={'√'} valor={'√'} onClick={sqrt}/>
                 </div>
             </div>
-            <PopUp trigger={showHistory} setTrigger={setShowHistory} history={history}/>
+        <PopUp trigger={showHistory} setTrigger={setShowHistory} history={history}/>
         </div>
         <button onClick={() => setCount(count + 1)}>muda tema</button>
         </>

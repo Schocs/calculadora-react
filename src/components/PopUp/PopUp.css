@@ -7,15 +7,17 @@
     height: 50%;
     width: 90%;
     background: rgb(184, 148, 169);
-    z-index: 10;
+    z-index: 30;
     border-radius: 8px;
     border-color: black;
-    border-width: 1.5px;
-    font-family: Orbitron;
+    border-width: 2.5px;
+    border-style: outset;
+    font-family: 'VT323';
 }
 
 .topPop {
-    height: 25%;
+    margin-top: 1.5%;
+    height: 15%;
     width: 100%;
     display: flex;
     align-items: center;
@@ -33,7 +35,7 @@
 
 .mainPop {
     width: 100%;
-    height: 60%;
+    height: 55%;
     margin: auto;
     text-align: center;
     font-size: 16px;
@@ -41,7 +43,7 @@
 
 .botPop {
     width: 80%;
-    height: 15%;
+    height: 25%;
     margin: auto;
     text-align: center;
     font-size: 12px;
@@ -49,10 +51,10 @@
 
 @media (min-width: 640px) {
     .Pop {
-        margin-top: 0%;
-        position: relative; top: -100%;
-        height: 34%;
-        width: 34%;
+        margin-top: 0;
+        position: relative; top: -70%;
+        height: 22%;
+        width: 45%;
     }
 
     .topPop {
@@ -61,7 +63,7 @@
 
     .mainPop {
         width: 95%;
-        font-size: 16px;
+        font-size: 24px;
     }
 
     .botPop {

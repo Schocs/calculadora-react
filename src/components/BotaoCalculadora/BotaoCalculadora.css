@@ -10,6 +10,7 @@
 
 .botao:hover {
     transform: scale(105%);
+    border: none;
 }
 
 .interno {
@@ -29,8 +30,15 @@
     color: black;
 }
 
+.interno:hover{
+    font-size: 30px;
+    transition: ease-in;
+    border: none;
+}
+
 .interno:active {
     transform: translateY(5%);
     transition: ease-in;
     box-shadow: 0px 1px 10px -5px white;
+    border: none;
 }

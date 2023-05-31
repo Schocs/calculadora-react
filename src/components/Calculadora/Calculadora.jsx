@@ -118,7 +118,8 @@ const Calculadora = () => {
     const [espCor, setEspCor] = useState('slateblue');
     const [bodyCor, setBodyCor] = useState('slategrey');
     const [backBtnCor, setBackBtnCor] = useState('white');
-    const [backCalCor, setBackCalCor] = useState('#29465B')
+    const [popCor, setPopCor] = useState('slateblue');
+    const [popBtnCor, setPopBtnCor] = useState('cadetblue');
 
     const handleTheme = () => {
         switch(count) {
@@ -129,6 +130,8 @@ const Calculadora = () => {
                 setEspCor('#ccff02');
                 setBodyCor('#1c0127');
                 setBackBtnCor('white');
+                setPopCor('#1c0127');
+                setPopBtnCor('#ccff02');
                 break;
             case 2:
                 setNumCor('#abbf63');
@@ -137,6 +140,8 @@ const Calculadora = () => {
                 setEspCor('#82c9d9');
                 setBodyCor('#401219');
                 setBackBtnCor('beige');
+                setPopCor('#401219');
+                setPopBtnCor('#82c9d9');
                 break;
             case 3:
                 setNumCor('#829b7c');
@@ -145,6 +150,8 @@ const Calculadora = () => {
                 setEspCor('#c7bea0');
                 setBodyCor('#e5e2d6');
                 setBackBtnCor('ligthgrey');
+                setPopCor('#bf9a8e');
+                setPopBtnCor('#dcc278');
                 break;
             case 4:
                 setCount(0);
@@ -154,6 +161,8 @@ const Calculadora = () => {
                 setEspCor('slateblue');
                 setBodyCor('slategrey');
                 setBackBtnCor('white');
+                setPopCor('slateblue');
+                setPopBtnCor('cadetblue');
                 break;   
         }
     }
@@ -194,7 +203,7 @@ const Calculadora = () => {
                     <BotaoCalculadora cor={exCor} backCor={backBtnCor} simbolo={'√'} valor={'√'} onClick={sqrt}/>
                 </div>
             </div>
-        <PopUp trigger={showHistory} setTrigger={setShowHistory} history={history}/>
+        <PopUp trigger={showHistory} setTrigger={setShowHistory} history={history} backCor={popCor} btnCor={popBtnCor}/>
         </div>
         <button onClick={() => setCount(count + 1)}>muda tema</button>
         </>

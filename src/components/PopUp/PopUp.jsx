@@ -14,7 +14,7 @@ const PopUp = (props) => {
                 {props.history}
             </div>
             <div className='botPop'>
-                <button onClick={() => props.setTrigger(false)} style={{background: props.btnCor}}>
+                <button onClick={() => props.setTrigger(false)} style={{background: props.btnCor, color: 'black'}}>
                         Close
                 </button>
             </div>

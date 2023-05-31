@@ -117,7 +117,8 @@ const Calculadora = () => {
     const [exCor, setExCor] = useState('cadetblue');
     const [espCor, setEspCor] = useState('slateblue');
     const [bodyCor, setBodyCor] = useState('slategrey');
-    const [backBtnCor, setBackBtnCor] = useState('white')
+    const [backBtnCor, setBackBtnCor] = useState('white');
+    const [backCalCor, setBackCalCor] = useState('#29465B')
 
     const handleTheme = () => {
         switch(count) {
@@ -162,12 +163,18 @@ const Calculadora = () => {
     }, [count]);
 
     return (
-        <div className='raiz'>
+        <>
         <div className='calcBody' style={{background: bodyCor}}>
             <div className='painel'>
                 <div className={'display'}>
                     {display}
                 </div>
+            </div>
+            <div className='especiais'>
+                <BotaoCalculadora cor={espCor} backCor={backBtnCor} simbolo={'Reset'} valor={'reset'} onClick={reset}/>
+                <BotaoCalculadora cor={espCor} backCor={backBtnCor} simbolo={'Clear'} valor={'clear'} onClick={clearDisplay}/>
+                <BotaoCalculadora cor={espCor} backCor={backBtnCor} simbolo={'History'} valor={'history'} onClick={isHistoryShown}/>
+                <BotaoCalculadora cor={espCor} backCor={backBtnCor} simbolo={'='} valor={'='} onClick={calculate}/>
             </div>
             <div className='teclado'>
                 <div className='operadores'>
@@ -187,16 +194,10 @@ const Calculadora = () => {
                     <BotaoCalculadora cor={exCor} backCor={backBtnCor} simbolo={'√'} valor={'√'} onClick={sqrt}/>
                 </div>
             </div>
-            <div className='especiais'>
-                <BotaoCalculadora cor={espCor} backCor={backBtnCor} simbolo={'='} valor={'='} onClick={calculate}/>
-                <BotaoCalculadora cor={espCor} backCor={backBtnCor} simbolo={'History'} valor={'history'} onClick={isHistoryShown}/>
-                <BotaoCalculadora cor={espCor} backCor={backBtnCor} simbolo={'Reset'} valor={'reset'} onClick={reset}/>
-                <BotaoCalculadora cor={espCor} backCor={backBtnCor} simbolo={'Clear'} valor={'clear'} onClick={clearDisplay}/>
-            </div>
             <PopUp trigger={showHistory} setTrigger={setShowHistory} history={history}/>
         </div>
         <button onClick={() => setCount(count + 1)}>muda tema</button>
-        </div>
+        </>
     )
 }
 

@@ -3,7 +3,7 @@ import './Calculadora.css';
 import BotaoCalculadora from '../BotaoCalculadora/BotaoCalculadora';
 import PopUp from '../PopUp/PopUp';
 
-const Calculadora = () => {
+const Calculadora = (props) => {
 
     const numeros = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, '.', '-'];
     const operadores = ['+', '-', '*', '/'];
@@ -111,7 +111,6 @@ const Calculadora = () => {
         setShowHistory(!showHistory);
     }
 
-    const [count, setCount] = useState(0);
     const [numCor, setNumCor] = useState('wheat');
     const [opCor, setOpCor] = useState('coral');
     const [exCor, setExCor] = useState('cadetblue');
@@ -122,7 +121,7 @@ const Calculadora = () => {
     const [popBtnCor, setPopBtnCor] = useState('cadetblue');
 
     const handleTheme = () => {
-        switch(count) {
+        switch(props.count) {
             case 1: 
                 setNumCor('#FF3131');
                 setOpCor('#39ff14');
@@ -154,7 +153,7 @@ const Calculadora = () => {
                 setPopBtnCor('#dcc278');
                 break;
             case 4:
-                setCount(0);
+                props.setCount(0);
                 setNumCor('wheat');
                 setOpCor('coral');
                 setExCor('cadetblue');
@@ -169,7 +168,7 @@ const Calculadora = () => {
 
     useEffect(() => {
         handleTheme();
-    }, [count]);
+    }, [props.count]);
 
     return (
         <>
@@ -205,7 +204,7 @@ const Calculadora = () => {
             </div>
         <PopUp trigger={showHistory} setTrigger={setShowHistory} history={history} backCor={popCor} btnCor={popBtnCor}/>
         </div>
-        <button onClick={() => setCount(count + 1)}>muda tema</button>
+        <button onClick={() => props.setCount(props.count + 1)}>muda tema</button>
         </>
     )
 }

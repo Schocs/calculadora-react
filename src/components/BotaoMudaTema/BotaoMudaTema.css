@@ -1,0 +1,21 @@
+
+.mudaTema {
+    cursor: pointer;
+    height: 65px;
+    width: 65px;
+    border-radius: 50%;
+    background: rgba(112, 128, 144, 0.5);
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.733);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.mudaTema:hover {
+    transform: scale(107.5%);
+    box-shadow: 5px 5px 10px rgba(131, 121, 121, 0.733);
+}
+
+.seta {
+    margin: auto;
+}

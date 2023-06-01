@@ -204,7 +204,6 @@ const Calculadora = (props) => {
             </div>
         <PopUp trigger={showHistory} setTrigger={setShowHistory} history={history} backCor={popCor} btnCor={popBtnCor}/>
         </div>
-        <button onClick={() => props.setCount(props.count + 1)}>muda tema</button>
         </>
     )
 }

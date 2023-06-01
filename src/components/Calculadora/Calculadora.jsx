@@ -168,6 +168,7 @@ const Calculadora = (props) => {
 
     useEffect(() => {
         handleTheme();
+        props.temaPag();
     }, [props.count]);
 
     return (

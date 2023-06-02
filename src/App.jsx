@@ -25,10 +25,10 @@ function App() {
   const handleTheme = () => {
     switch(count) {
       case 1:
-        setTema('rgb(64, 27, 78)');
+        setTema('rgb(222, 255, 91)');
         break;
       case 2:
-        setTema('rgb(95, 28, 38)')
+        setTema('rgb(130, 201, 217)')
         break;
       case 3:
         setTema('rgb(130, 155, 124)');

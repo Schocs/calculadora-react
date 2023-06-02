@@ -1,16 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Orbitron&family=VT323&display=swap');
 
 .botao {
-    width: 7.5vw;
-    height: 10vh;
+    width: 12.5vw;
+    height: 8vh;
     background: rgb(245, 245, 220);
     border-radius: 8px;
     font-family: 'VT323';
 }
 
-.botao:hover {
+.botao:active {
     transform: scale(105%);
-    border: none;
 }
 
 .interno {
@@ -25,13 +24,13 @@
     cursor: pointer;
     border-radius: 8px;
     border-color: lightgray;
-    font-size: 26px;
+    font-size: 14px;
     font-weight: bolder;
     color: black;
 }
 
 .interno:hover{
-    font-size: 30px;
+    font-size: 16px;
     transition: ease-in;
     border: none;
 }
@@ -41,4 +40,29 @@
     transition: ease-in;
     box-shadow: 0px 1px 10px -5px white;
     border: none;
+}
+
+@media (min-width: 640px) {
+
+    .botao {
+        width: 7.5vw;
+        height: 10vh;
+    }
+
+    .botao:active {
+        transform: none;
+    }
+
+    .botao:hover {
+        transform: scale(105%);
+        border: none;
+    }
+
+    .interno {
+        font-size: 26px;
+    }
+
+    .interno:hover{
+        font-size: 30px;
+    }
 }

@@ -1,25 +1,40 @@
 
 .mudaTema {
-    cursor: pointer;
-    height: 65px;
-    width: 65px;
-    border-radius: 50%;
-    background: rgb(64, 18, 25);
-    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.733);
+    width: 33px;
+    height: 33px;
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.mudaTema:hover {
-    transform: scale(107.5%);
-    box-shadow: 5px 5px 10px rgba(131, 121, 121, 0.733);
-}
-
-.mudaTema:active {
-    transform: translateY(5%);
+    cursor: pointer;
 }
 
 .seta {
-    margin: auto;
+    width: 27px;
+    height: 27px;
+}
+
+
+@media (min-width: 640px) {
+
+    .mudaTema {
+        height: 65px;
+        width: 65px;
+        border-radius: 50%;
+        background: rgb(64, 18, 25);
+        box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.733);
+    }
+    
+    .mudaTema:hover {
+        transform: scale(107.5%);
+        box-shadow: 5px 5px 10px rgba(131, 121, 121, 0.733);
+    }
+    
+    .mudaTema:active {
+        transform: translateY(5%);
+    }
+    
+    .seta {
+        margin: auto;
+    }
+
 }
